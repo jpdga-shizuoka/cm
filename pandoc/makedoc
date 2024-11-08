@@ -1,0 +1,2 @@
+#/bin/sh
+docker run --platform linux/amd64 --rm --entrypoint="make" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc
