@@ -2,7 +2,7 @@ PANDOC = pandoc
 ENGINE = lualatex
 
 NAME   = ディスクゴルフ大会のための競技マニュアル
-TARGET = $(NAME).pdf
+TARGET = $(NAME)
 TEMPLATE = default-template.tex
 SOURCEDIR = ../source
 SOURCEFILES = index.md \
@@ -61,22 +61,16 @@ define addnewline
 endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
-$(TARGET): $(SOURCE)
+$(TARGET).pdf: $(SOURCE)
 	cat $(SOURCE) | \
 	sed 's/\+\+//g' | \
-	sed 's/<sup>\([0-9]\+\)<\/sup>/\\textsuperscript{\1}/g' | \
-	awk -f footnote.awk | \
-	tee .teststream.md | \
-	$(PANDOC) \
-		-C --pdf-engine=$(ENGINE) \
-		--from markdown+superscript \
-		--template=$(TEMPLATE) \
-		--toc --toc-depth=2 \
-		-V documentclass=ltjsarticle \
-		-V luatexjapresetoptions=fonts-noto-cjk \
-		-o $(TARGET)
+	tee .md2html.md | \
+	$(PANDOC) -d md2html.yaml -o $(TARGET).html
+	cat $(TARGET).html | \
+	tee .html2pdf.html | \
+	$(PANDOC) -d html2pdf.yaml -o $(TARGET).pdf
 
-all: clean $(TARGET)
+all: clean $(TARGET).pdf
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET).html  $(TARGET).pdf
