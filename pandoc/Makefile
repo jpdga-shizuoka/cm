@@ -3,6 +3,7 @@ ENGINE = lualatex
 
 NAME   = ディスクゴルフ大会のための競技マニュアル
 TARGET = $(NAME).pdf
+TEMPLATE = default-template.tex
 SOURCEDIR = ../source
 SOURCEFILES = index.md \
 	Introduction.md \
@@ -67,6 +68,7 @@ $(TARGET): $(SOURCE)
 	$(PANDOC) \
 		-C --pdf-engine=$(ENGINE) \
 		--from markdown+superscript \
+		--template=$(TEMPLATE) \
 		--toc --toc-depth=2 \
 		-V documentclass=ltjsarticle \
 		-V luatexjapresetoptions=fonts-noto-cjk \
