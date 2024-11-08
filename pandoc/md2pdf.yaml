@@ -1,0 +1,18 @@
+from: markdown+superscript
+to: pdf
+pdf-engine: lualatex
+listings: true
+toc: true
+toc-depth: 2
+
+variables:
+  lang: ja
+  documentclass: ltjsarticle
+  luatexjapresetoptions: fonts-noto-cjk
+include-in-header:
+    - ${.}/headers.tex
+    - ${.}/pdga.tex
+metadata:
+    listings: true
+    documentclass: bxjsarticle
+    geometry: a4paper, margin=20mm

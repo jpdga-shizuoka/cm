@@ -1,0 +1,14 @@
+from: markdown+raw_html
+to: html
+pdf-engine: lualatex
+listings: true
+toc: true
+toc-depth: 2
+self-contained: true
+
+variables:
+  lang: ja
+  documentclass: ltjsarticle
+metadata:
+    listings: true
+    documentclass: bxjsarticle
