@@ -65,6 +65,8 @@ $(TARGET): $(SOURCE)
 	cat $(SOURCE) | \
 	sed 's/\+\+//g' | \
 	sed 's/<sup>\([0-9]\+\)<\/sup>/\\textsuperscript{\1}/g' | \
+	awk -f footnote.awk | \
+	tee .teststream.md | \
 	$(PANDOC) \
 		-C --pdf-engine=$(ENGINE) \
 		--from markdown+superscript \
