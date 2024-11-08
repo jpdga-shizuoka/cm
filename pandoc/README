@@ -1,18 +1,21 @@
 # マークダウンからPDFへの一括変換
 
-本ディレクトリの環境は、マークダウンファイルを直接PDFに変換するためにある。なお、本環境に用いられる[pandoc](https://pandoc.org)の実行環境作りは、以下の成果を基本にしている。
+本ディレクトリの環境は、マークダウンファイルを直接PDFに変換するためにある。
+なお、本環境に用いられる[pandoc](https://pandoc.org)の実行環境作りは、以下の成果を参考にした。
 
 * [楽にDockerで日本語Pandocする](https://qiita.com/kojix2/items/1d2db46858ce202628d2)
-
 
 ## 準備
 
 1. [docker](https://www.docker.com)の実行環境が準備されていること。
-1. `docker pull --platform linux/amd64 pandoc/latex:latest-ubuntu`
-1. `docker build --platform linux/amd64 -t pandoc-japanese .`
+1. 下記手順で実行用dockerイメージを作成しておくこと。
+    1. `docker pull --platform linux/amd64 pandoc/latex:latest-ubuntu`
+    1. `docker build --platform linux/amd64 -t pandoc-japanese .`
 
 ## 実行
 
-* `makepdf`
+* `./makedoc`
 または
 * `docker run --platform linux/amd64 --rm --entrypoint="sh" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc`
+
+成功すると[ディスクゴルフ大会のための競技マニュアル](ディスクゴルフ大会のための競技マニュアル.pdf)ファイルが作成される。
