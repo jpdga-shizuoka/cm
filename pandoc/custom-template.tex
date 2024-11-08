@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{titling}
+
+\title{${title}}
+\author{${author}}
+\date{${date}}
+
+\usepackage{hyperref}
+\begin{document}
+
+\maketitle
+
+% 翻訳者情報を追加
+\ifdefined\translator
+\begin{center}
+    翻訳: \textbf{${translator}}
+\end{center}
+\fi
+
+\newpage
+
+$body$
+
+\end{document}

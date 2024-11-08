@@ -2,7 +2,7 @@
 BEGIN {
     in_block = 0
 }
-/^##### 訳註$/ {
+/^##### 訳注$/ {
     print
     if (!in_block) {
         print "\\begingroup\\footnotesize\\renewcommand{\\arraystretch}{0.8}"
