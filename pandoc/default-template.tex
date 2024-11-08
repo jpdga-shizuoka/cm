@@ -14,17 +14,14 @@ $if(beamerarticle)$
 \usepackage{beamerarticle} % needs to be loaded first
 $endif$
 \usepackage{xcolor}
+\usepackage{geometry}
+\geometry{a4paper, margin=20mm}
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
 \usepackage{amsmath,amssymb}
 \usepackage{etoolbox}
 \usepackage{caption}
-\AtBeginEnvironment{table}{
-  \captionsetup{font=footnotesize} % テーブルキャプションも含めてフォントサイズを小さく
-  \footnotesize
-  \renewcommand{\arraystretch}{0.8} % 行間を詰める
-}
 $--
 $-- section numbering
 $--
