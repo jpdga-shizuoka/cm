@@ -4,6 +4,7 @@
 なお、本環境に用いられる[pandoc](https://pandoc.org)の実行環境作りは、以下の成果を参考にした。
 
 * [楽にDockerで日本語Pandocする](https://qiita.com/kojix2/items/1d2db46858ce202628d2)
+* [自分が普段使ってるpandocの設定ファイルをさらす](https://zenn.dev/t4aru/articles/d6e23e4407c605)
 
 ## 準備
 
