@@ -6,7 +6,7 @@ TARGET = $(NAME)
 CONFIG = md2pdf.yaml
 FILTERSDIR = filters
 SOURCEDIR = ../source
-SOURCEFILES = index.md \
+SOURCEFILES = \
 	Introduction.md \
 	1.01PlayerEligibility.md \
 	1.02TournamentRegistration.md \

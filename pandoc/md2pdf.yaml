@@ -3,6 +3,7 @@ to: pdf
 pdf-engine: lualatex
 toc: true
 toc-depth: 2
+template: ./templates/main.tex
 
 variables:
     lang: ja
@@ -19,3 +20,8 @@ include-in-header:
 metadata:
     documentclass: bxjsarticle
     geometry: a4paper, margin=20mm
+    title: ディスクゴルフ大会のための競技マニュアル
+    subtitle: The Competition Manual for Disc Golf Events
+    author:
+    - PDGA 著
+    - 静岡県ディスクゴルフ協会 訳
