@@ -1,18 +1,21 @@
-from: markdown+superscript
+from: markdown
 to: pdf
 pdf-engine: lualatex
-listings: true
 toc: true
 toc-depth: 2
 
 variables:
-  lang: ja
-  documentclass: ltjsarticle
-  luatexjapresetoptions: fonts-noto-cjk
+    lang: ja
+    documentclass: ltjsarticle
+    luatexjapresetoptions: fonts-noto-cjk
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: red
+    toccolor: gray
 include-in-header:
-    - ${.}/headers.tex
-    - ${.}/pdga.tex
+    - ${.}/headers/headers.tex
+    # - ${.}/headers/pdga-formats.tex
+    # - ${.}/headers/url-link.tex
 metadata:
-    listings: true
     documentclass: bxjsarticle
     geometry: a4paper, margin=20mm
