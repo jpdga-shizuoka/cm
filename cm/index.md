@@ -1,9 +1,9 @@
 ---
-title: "ディスクゴルフ大会のための競技マニュアル"
-author: "PDGA"
-date: "2024-11-07"
-css: "styles.css"
----
-<div class="toc"></div>
-The original copyright of the Competition Manual for Disc Golf Events is reserved by PDGA.
+title: The Competition Manual for Disc Golf Events
+subtitle: ディスクゴルフ大会のための競技マニュアル
+author:
+- PDGA^®^ 著
+- 静岡県ディスクゴルフ協会 訳
+...
 \newpage
+

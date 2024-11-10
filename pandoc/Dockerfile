@@ -1,5 +1,6 @@
 FROM "pandoc/latex"
-RUN apk --update --no-cache add make msttcorefonts-installer fontconfig sed gawk && \
+RUN apk --update --no-cache add \
+        make msttcorefonts-installer fontconfig sed gawk python3 && \
     update-ms-fonts && \
     fc-cache -f && \
     tlmgr update --self --all && \
