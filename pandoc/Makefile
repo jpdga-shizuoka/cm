@@ -1,9 +1,10 @@
+NAME   = ディスクゴルフ大会のための競技マニュアル
 PANDOC = pandoc
 ENGINE = lualatex
 
-NAME   = ディスクゴルフ大会のための競技マニュアル
 TARGET = $(NAME)
-TEMPLATE = default-template.tex
+CONFIG = md2pdf.yaml
+FILTERSDIR = filters
 SOURCEDIR = ../source
 SOURCEFILES = index.md \
 	Introduction.md \
@@ -63,12 +64,12 @@ SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE)
 	cat $(SOURCE) | \
-	sed 's/\+\+//g' | \
-	tee .md2html.md | \
-	$(PANDOC) -d md2html.yaml -o $(TARGET).html
-	cat $(TARGET).html | \
-	tee .html2pdf.html | \
-	$(PANDOC) -d html2pdf.yaml -o $(TARGET).pdf
+	$(FILTERSDIR)/remove-plusplus | \
+	$(FILTERSDIR)/link2dgjapan | \
+	$(FILTERSDIR)/link2ordg | \
+	$(FILTERSDIR)/footnote | \
+	tee .md2pdf.md | \
+	$(PANDOC) -d $(CONFIG) -o $(TARGET).pdf
 
 all: clean $(TARGET).pdf
 
