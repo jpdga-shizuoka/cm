@@ -4,6 +4,7 @@ ENGINE = lualatex
 
 TARGET = $(NAME)
 CONFIG = md2pdf.yaml
+TEMPLATE = templates/main.tex
 FILTERSDIR = filters
 SOURCEDIR = ../source
 SOURCEFILES = \
@@ -62,7 +63,7 @@ define addnewline
 endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
-$(TARGET).pdf: $(SOURCE)
+$(TARGET).pdf: $(SOURCE) $(CONFIG) $(TEMPLATE)
 	cat $(SOURCE) | \
 	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
