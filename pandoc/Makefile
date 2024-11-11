@@ -12,6 +12,7 @@ MARKDOWNDIR = markdown
 CONFIG = $(CONFIGDIR)/body.yaml
 COVERDATA = cover.tex
 TEMPLATE = $(TEMPLATEDIR)/main.tex
+COVER_TEMPLATE = $(TEMPLATEDIR)/cover-template.tex
 SOURCEFILES = \
 	Introduction.md \
 	1.01PlayerEligibility.md \
@@ -82,8 +83,8 @@ $(TARGET).pdf: $(SOURCE) $(COVERDATA)
 		-B $(COVERDATA) \
 		-o $(TARGET).pdf
 
-$(COVERDATA) : $(MARKDOWNDIR)/cover.md
-	$(PANDOC) $(MARKDOWNDIR)/cover.md \
+$(COVERDATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml
+	echo "" | $(PANDOC) \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/cover.yaml \
 		-o $(COVERDATA)
