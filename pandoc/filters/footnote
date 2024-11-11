@@ -2,11 +2,11 @@
 #
 # 訳注ブロックに、訳注専用の書式を設定するためのフィルター
 #
-true && exec awk "-f" "$0" "--" "$@"
+awk '
 BEGIN {
     in_block = 0
 }
-/^##### 訳注$/ {
+/^#####\s+訳注\s*$/ {
     print
     if (!in_block) {
         print "\\begingroup\\footnotesize\\renewcommand{\\arraystretch}{0.8}"
@@ -17,6 +17,7 @@ BEGIN {
 /^#\s/ || /^##\s/ {
     if (in_block) {
         print "\\endgroup"
+        print ""
         in_block = 0
     }
     print
@@ -30,3 +31,4 @@ END {
         print "\\endgroup"
     }
 }
+'
