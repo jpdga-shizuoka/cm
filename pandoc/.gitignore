@@ -1,5 +1,6 @@
 *.pdf
 *.html
+*.aux
 .teststream.md
 .md2html.md
 .md2pdf.md

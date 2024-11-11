@@ -1,0 +1,13 @@
+toc: true
+lot: true
+toc-depth: 2
+template: ./templates/main.tex
+variables:
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: red
+    toccolor: gray
+metadata:
+    documentclass: bxjsarticle
+    geometry: a4paper, margin=20mm
+    title: ""

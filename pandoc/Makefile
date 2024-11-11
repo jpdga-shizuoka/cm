@@ -1,12 +1,17 @@
 NAME   = ディスクゴルフ大会のための競技マニュアル
-PANDOC = pandoc
-ENGINE = lualatex
-
 TARGET = $(NAME)
-CONFIG = md2pdf.yaml
-TEMPLATE = templates/main.tex
+
+PANDOC = pandoc
+
+CONFIGDIR = config
+TEMPLATEDIR = templates
 FILTERSDIR = filters
 SOURCEDIR = ../source
+MARKDOWNDIR = markdown
+
+CONFIG = $(CONFIGDIR)/body.yaml
+COVERDATA = cover.tex
+TEMPLATE = $(TEMPLATEDIR)/main.tex
 SOURCEFILES = \
 	Introduction.md \
 	1.01PlayerEligibility.md \
@@ -63,7 +68,7 @@ define addnewline
 endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
-$(TARGET).pdf: $(SOURCE) $(CONFIG) $(TEMPLATE)
+$(TARGET).pdf: $(SOURCE) $(COVERDATA)
 	cat $(SOURCE) | \
 	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
@@ -71,9 +76,19 @@ $(TARGET).pdf: $(SOURCE) $(CONFIG) $(TEMPLATE)
 	$(FILTERSDIR)/table-markup | \
 	$(FILTERSDIR)/footnote | \
 	tee .md2pdf.md | \
-	$(PANDOC) -d $(CONFIG) -o $(TARGET).pdf
+	$(PANDOC) \
+		-d $(CONFIGDIR)/common.yaml \
+		-d $(CONFIGDIR)/body.yaml \
+		-B $(COVERDATA) \
+		-o $(TARGET).pdf
+
+$(COVERDATA) : $(MARKDOWNDIR)/cover.md
+	$(PANDOC) $(MARKDOWNDIR)/cover.md \
+		-d $(CONFIGDIR)/common.yaml \
+		-d $(CONFIGDIR)/cover.yaml \
+		-o $(COVERDATA)
 
 all: clean $(TARGET).pdf
 
 clean:
-	rm -f $(TARGET).html  $(TARGET).pdf
+	rm -f $(TARGET).html  $(TARGET).pdf $(COVERDATA) .md2pdf.md
