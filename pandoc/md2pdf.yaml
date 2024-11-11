@@ -3,6 +3,7 @@ to: pdf
 pdf-engine: lualatex
 toc: true
 toc-depth: 2
+lot: true
 template: ./templates/main.tex
 
 variables:

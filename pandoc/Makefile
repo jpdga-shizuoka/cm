@@ -68,6 +68,7 @@ $(TARGET).pdf: $(SOURCE) $(CONFIG) $(TEMPLATE)
 	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
 	$(FILTERSDIR)/link2ordg | \
+	$(FILTERSDIR)/table-markup \
 	$(FILTERSDIR)/footnote | \
 	tee .md2pdf.md | \
 	$(PANDOC) -d $(CONFIG) -o $(TARGET).pdf
