@@ -10,7 +10,7 @@ awk '
         print "\\renewcommand{\\arraystretch}{0.8}"
     } else if ($0 ~ /^:::\s*$/) {
         print "\\endgroup"
-        print
+        print ""
     } else {
         print $0
     }
