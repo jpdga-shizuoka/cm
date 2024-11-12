@@ -16,7 +16,10 @@
 
 ## 実行
 
-* `./makedoc`
+```sh
+$ cd pandoc
+$ ./makedoc [all]
+```
 
 成功すると[ディスクゴルフ大会のための競技マニュアル](ディスクゴルフ大会のための競技マニュアル.pdf)ファイルが作成される。
 
@@ -24,6 +27,9 @@
 
 下記コマンドにてターゲットOS上で`sh`を立ち上げて、任意のコマンドを実行する。
 
-1 `docker run --platform linux/amd64 --rm --entrypoint="sh" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc`
-1. `make clean; make`
-1. 実行後、pandocに入力された全データは、[`.teststream.md`](.teststream.md)に保存されるので、必要に応じて確認すると良い。
+```sh
+$ docker run --rm --entrypoint="sh" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc
+# make [all]
+```
+
+実行後、pandocに入力された全データは、[`.teststream.md`](.teststream.md)に保存されるので、必要に応じて確認すると良い。
