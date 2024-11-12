@@ -10,9 +10,11 @@ SOURCEDIR = ../source
 MARKDOWNDIR = markdown
 
 CONFIG = $(CONFIGDIR)/body.yaml
-COVERDATA = cover.tex
+COVER_DATA = cover.tex
+BACKCOVER_DATA = backcover.tex
 TEMPLATE = $(TEMPLATEDIR)/main.tex
 COVER_TEMPLATE = $(TEMPLATEDIR)/cover-template.tex
+BACKCOVER_TEMPLATE = $(TEMPLATEDIR)/backcover-template.tex
 SOURCEFILES = \
 	Introduction.md \
 	1.01PlayerEligibility.md \
@@ -69,7 +71,7 @@ define addnewline
 endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
-$(TARGET).pdf: $(SOURCE) $(COVERDATA)
+$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA)
 	cat $(SOURCE) | \
 	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
@@ -80,16 +82,24 @@ $(TARGET).pdf: $(SOURCE) $(COVERDATA)
 	$(PANDOC) \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/body.yaml \
-		-B $(COVERDATA) \
+		-B $(COVER_DATA) \
+		-A $(BACKCOVER_DATA) \
 		-o $(TARGET).pdf
 
-$(COVERDATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml
+$(COVER_DATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml
 	echo "" | $(PANDOC) \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/cover.yaml \
-		-o $(COVERDATA)
+		-o $(COVER_DATA)
+
+$(BACKCOVER_DATA) : $(BACKCOVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/revisions.yaml $(CONFIGDIR)/backcover.yaml
+	echo "" | $(PANDOC) \
+		-d $(CONFIGDIR)/common.yaml \
+		-d $(CONFIGDIR)/backcover.yaml \
+		-d $(CONFIGDIR)/revisions.yaml \
+		-o $(BACKCOVER_DATA)
 
 all: clean $(TARGET).pdf
 
 clean:
-	rm -f $(TARGET).html  $(TARGET).pdf $(COVERDATA) .md2pdf.md
+	rm -f $(TARGET).html  $(TARGET).pdf $(COVER_DATA) $(BACKCOVER_DATA) .md2pdf.md

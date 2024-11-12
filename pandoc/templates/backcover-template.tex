@@ -1,0 +1,20 @@
+\begin{titlepage}
+    \vspace*{\stretch{1}}
+    \begin{center}
+        \textsf{$title$} \\
+        $if(subtitle)$
+        $for(subtitle)$
+            $subtitle$ \\
+        $endfor$
+        $endif$
+        \begin{tabular}{ll}
+            $for(revisions)$
+                $it.revision$ & $it.date$ \\
+            $endfor$
+        \end{tabular} \\
+        \begin{tabular}{ll} \toprule
+            発行   & $publisher$ \\
+            連絡先 & $contact$ \\ \bottomrule
+        \end{tabular}
+    \end{center}
+\end{titlepage}

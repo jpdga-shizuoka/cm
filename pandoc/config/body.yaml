@@ -10,4 +10,3 @@ variables:
 metadata:
     documentclass: bxjsarticle
     geometry: a4paper, margin=20mm
-    title: ""

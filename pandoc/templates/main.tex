@@ -54,21 +54,13 @@ $if(has-frontmatter)$
 \frontmatter
 $endif$
 $if(title)$
-  \maketitle
-  $if(copyright)$
-    \begin{center}
-      \vspace{1em}
-      \small Copyright \copyright{}
-      $copyright$
-    \end{center}
-  $endif$
-  $if(abstract)$
-    \begin{abstract}
-  $abstract$
-    \end{abstract}
-  $endif$
+\maketitle
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
 $endif$
-\newpage
+$endif$
 
 $for(include-before)$
 $include-before$
@@ -125,24 +117,4 @@ $for(include-after)$
 $include-after$
 
 $endfor$
-
-\vspace*{\stretch{1}}
-\begin{center}
-\textsf{$title$}
-$if(subtitle)$
-
-$subtitle$
-$endif$
-
-\begin{tabular}{ll}
-$for(revisions)$
-$it.revision$ & $it.date$ \\
-$endfor$
-\end{tabular}
-  
-\begin{tabular}{ll} \toprule
-  発行      & $publisher$ \\
-  連絡先    & $contact$ \\ \bottomrule
-\end{tabular}
-\end{center}
 \end{document}
