@@ -34,33 +34,33 @@ $endfor$
 $after-header-includes.latex()$
 $hypersetup.latex()$
 
-$if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
-$endif$
-$if(subtitle)$
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{$subtitle$}
-$endif$
-\author{$for(author)$$author$$sep$ \and $endfor$}
-\date{$date$}
+% $if(title)$
+%   \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+% $endif$
+% $if(subtitle)$
+%   \usepackage{etoolbox}
+%   \makeatletter
+%   \providecommand{\subtitle}[1]{% add subtitle to \maketitle
+%     \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+%   }
+%   \makeatother
+%   \subtitle{$subtitle$}
+% $endif$
+% \author{$for(author)$$author$$sep$ \and $endfor$}
+% \date{$date$}
 
 \begin{document}
 $if(has-frontmatter)$
 \frontmatter
 $endif$
-$if(title)$
-\maketitle
-$if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
-$endif$
-$endif$
+% $if(title)$
+%   \maketitle
+%   $if(abstract)$
+%     \begin{abstract}
+%     $abstract$
+%     \end{abstract}
+%   $endif$
+% $endif$
 
 $for(include-before)$
 $include-before$

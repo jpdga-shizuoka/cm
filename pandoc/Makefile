@@ -71,7 +71,7 @@ define addnewline
 endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
-$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA)
+$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	cat $(SOURCE) | \
 	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
