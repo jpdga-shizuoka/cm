@@ -11,8 +11,8 @@
 
 1. [docker](https://www.docker.com)の実行環境が準備されていること。
 1. 下記手順で実行用dockerイメージを作成しておくこと。
-    1. `docker pull --platform linux/amd64 pandoc/latex:latest-ubuntu`
-    1. `docker build --platform linux/amd64 -t pandoc .`
+    1. `docker pull pandoc/latex:latest-ubuntu`
+    1. `docker build -t pandoc .`
 
 ## 実行
 
