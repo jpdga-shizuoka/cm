@@ -77,7 +77,6 @@ $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	$(FILTERSDIR)/link2dgjapan | \
 	$(FILTERSDIR)/link2ordg | \
 	$(FILTERSDIR)/table-markup | \
-	$(FILTERSDIR)/footnote | \
 	tee .md2pdf.md | \
 	$(PANDOC) \
 		-d $(CONFIGDIR)/common.yaml \
