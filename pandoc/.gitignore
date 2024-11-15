@@ -1,6 +1,7 @@
 *.pdf
 *.html
 *.aux
+/*.tex
 .teststream.md
 .md2html.md
 .md2pdf.md

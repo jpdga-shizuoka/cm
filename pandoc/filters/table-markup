@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# `::: bigwidetabel`でマークアップされた表に、特別な書式を設定するためのフィルター
+# `::: bigwidetable`でマークアップされた表に、特別な書式を設定するためのフィルター
 #
 awk '
 {
-    if ($0 ~ /^:::\s+bigwidetabel\s*$/) {
+    if ($0 ~ /^:::\s+bigwidetable\s*$/) {
         print "\\begingroup"
         print "\\footnotesize"
         print "\\renewcommand{\\arraystretch}{0.8}"

@@ -28,7 +28,7 @@ $ ./makedoc [all]
 下記コマンドにてターゲットOS上で`sh`を立ち上げて、任意のコマンドを実行する。
 
 ```sh
-$ docker run --rm --entrypoint="sh" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc
+$ docker run --rm --entrypoint="bash" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc
 # make [all]
 ```
 
