@@ -72,7 +72,6 @@ SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	cat $(SOURCE) | \
-	$(FILTERSDIR)/table-markup | \
 	$(PANDOC) \
 		-d $(CONFIGDIR)/filters.yaml \
 		-d $(CONFIGDIR)/common.yaml \
