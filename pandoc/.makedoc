@@ -3,4 +3,4 @@
 # これはターゲットOS用です
 #
 . /home/venv/bin/activate
-make $1
+make "$@"

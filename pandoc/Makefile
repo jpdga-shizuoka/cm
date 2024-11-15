@@ -9,7 +9,6 @@ FILTERSDIR = filters
 SOURCEDIR = ../source
 MARKDOWNDIR = markdown
 
-CONFIG = $(CONFIGDIR)/body.yaml
 COVER_DATA = cover.tex
 BACKCOVER_DATA = backcover.tex
 TEMPLATE = $(TEMPLATEDIR)/main.tex
@@ -73,11 +72,9 @@ SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	cat $(SOURCE) | \
-	$(FILTERSDIR)/link2dgjapan | \
-	$(FILTERSDIR)/link2ordg | \
 	$(FILTERSDIR)/table-markup | \
 	$(PANDOC) \
-		--filter $(FILTERSDIR)/remove-plusplus.py \
+		-d $(CONFIGDIR)/filters.yaml \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/body.yaml \
 		-B $(COVER_DATA) \
