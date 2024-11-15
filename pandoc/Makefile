@@ -73,12 +73,11 @@ SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	cat $(SOURCE) | \
-	$(FILTERSDIR)/remove-plusplus | \
 	$(FILTERSDIR)/link2dgjapan | \
 	$(FILTERSDIR)/link2ordg | \
 	$(FILTERSDIR)/table-markup | \
-	tee .md2pdf.md | \
 	$(PANDOC) \
+		--filter $(FILTERSDIR)/remove-plusplus.py \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/body.yaml \
 		-B $(COVER_DATA) \
