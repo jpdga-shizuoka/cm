@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# [ ](dgj/ADDRESS)を検出しdgj部を正しいURLに書き換えるためのフィルター
-#
-sed 's/(dgj\//(https:\/\/jpdga-shizuoka.github.io\/ssa-round-ratings\/libraries\//g' 

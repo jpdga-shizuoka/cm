@@ -1,5 +1,0 @@
-#!/bin/sh
-#
-# [ ](ordg/ADDRESS)を検出しordg部を正しいURLに書き換えるためのフィルター
-#
-sed 's/(ordg\//(https:\/\/jpdga-shizuoka.github.io\/rules\//g' 
