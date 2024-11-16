@@ -1,8 +1,5 @@
-*.pdf
-*.html
-*.aux
+/*.pdf
+/*.aux
 /*.tex
-.teststream.md
-.md2html.md
-.md2pdf.md
-
+/*.lot
+/*.toc

@@ -71,14 +71,14 @@ endef
 SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
-	cat $(SOURCE) | \
 	$(PANDOC) \
 		-d $(CONFIGDIR)/filters.yaml \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/body.yaml \
 		-B $(COVER_DATA) \
 		-A $(BACKCOVER_DATA) \
-		-o $(TARGET).pdf
+		-o $(TARGET).pdf \
+		$(SOURCE)
 
 $(COVER_DATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml
 	echo "" | $(PANDOC) \
@@ -96,4 +96,4 @@ $(BACKCOVER_DATA) : $(BACKCOVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/
 all: clean $(TARGET).pdf
 
 clean:
-	rm -f $(TARGET).html  $(TARGET).pdf $(COVER_DATA) $(BACKCOVER_DATA) .md2pdf.md
+	rm -f $(TARGET).html $(TARGET).pdf $(COVER_DATA) $(BACKCOVER_DATA)
