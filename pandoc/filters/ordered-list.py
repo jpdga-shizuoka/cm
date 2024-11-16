@@ -10,6 +10,7 @@ STYLE_MAP = {
     2: 'LowerAlpha',  # a, b, c, ...
     3: 'LowerRoman'   # i, ii, iii, ...
 }
+header_level = 0
 #
 # OrderedListのインデントレベル(ネストの深さ)を計算する
 #
@@ -25,13 +26,18 @@ def get_indent_level(elem):
 # OrderedListのインデントレベルに応じてstyleを書き換える
 #
 def find_def_labelenumi(elem, doc):
+    global header_level
     if isinstance(elem, pf.OrderedList):
-        level = get_indent_level(elem)
+        list_level = get_indent_level(elem)
+        if header_level != 2:
+            return  # 書き換えの対象は、`##`節下だけ
         # 対応するstyleを設定
-        if level in STYLE_MAP:
-            elem.style = STYLE_MAP[level]
+        if list_level in STYLE_MAP:
+            elem.style = STYLE_MAP[list_level]
         else:
             elem.style = 'Decimal'  # デフォルトスタイル
+    elif isinstance(elem, pf.Header):
+        header_level = elem.level
 #
 # フィルターのエントリーポイント
 #
