@@ -68,7 +68,8 @@ SOURCEFILES = \
 define addnewline
 	$(SOURCEDIR)/$(1) newlineonly.txt
 endef
-SOURCE = $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
+SOURCE = sources/preface.md
+SOURCE += $(foreach file,$(SOURCEFILES),$(call addnewline,$(file)))
 
 $(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
 	$(PANDOC) \
