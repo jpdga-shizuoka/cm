@@ -67,10 +67,10 @@ cd pandoc
 
 * Pandocのフィルターを作成するには、
 先ずPandocがどのようにマークダウンファイルを分析しているか知ることが重要で、
-[debug-all.py](filters/debug-all.py)は大いに役立ちました。
+[print-all.py](filters/print-all.py)は大いに役立ちました。
 
     ```sh
-    e.g. pandoc --filter filters/debug-all.py -o foo.pdf testdata/foo.md
+    e.g. pandoc --filter filters/print-all.py -o foo.pdf testdata/foo.md
     ```
 
 # 参照
