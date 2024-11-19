@@ -79,20 +79,22 @@ SOURCE = \
 	$(SOURCEDIR)/6.03VariancesCM.md \
 	$(LOCAL_SOURCEDIR)/newpage.md
 
-$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE)
+$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE) $(CONFIGDIR)/revisions.yaml
 	$(PANDOC) \
 		-d $(CONFIGDIR)/filters.yaml \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/body.yaml \
+		-d $(CONFIGDIR)/revisions.yaml \
 		-B $(COVER_DATA) \
 		-A $(BACKCOVER_DATA) \
 		-o $(TARGET).pdf \
 		$(SOURCE)
 
-$(COVER_DATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml
+$(COVER_DATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml $(CONFIGDIR)/revisions.yaml
 	echo "" | $(PANDOC) \
 		-d $(CONFIGDIR)/common.yaml \
 		-d $(CONFIGDIR)/cover.yaml \
+		-d $(CONFIGDIR)/revisions.yaml \
 		-o $(COVER_DATA)
 
 $(BACKCOVER_DATA) : $(BACKCOVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/revisions.yaml $(CONFIGDIR)/backcover.yaml
