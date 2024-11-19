@@ -1,0 +1,4 @@
+from: markdown
+to: latex
+toc: false
+template: ./templates/cover-template.tex

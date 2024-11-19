@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# これはホストOS用です
+#
+docker run --rm --entrypoint="./.makedoc" -v $(pwd):/data -v $(pwd)/../cm:/source -it pandoc "$@"

@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# これはターゲットOS用です
+#
+. /home/venv/bin/activate
+make "$@"
