@@ -1,6 +1,6 @@
 filters:
   - filters/remove-plusplus.py
   - filters/sub-url.py
-  - filters/bigwidetable.py
+  - filters/format-table.py
   - filters/ordered-list.py
   
