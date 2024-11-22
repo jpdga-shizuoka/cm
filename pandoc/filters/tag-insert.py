@@ -24,7 +24,7 @@ class Underline(pf.Inline):
         return Underline(*content)
 
 def action(elem, doc):
-    if isinstance(elem, pf.Para):  # Paraクラスに限定
+    if isinstance(elem, pf.Para) or isinstance(elem, pf.Plain):
         new_elems = []
         buffer = []  # Underline用のバッファ
         in_underline = False  # 現在Underline範囲内かどうかを判定

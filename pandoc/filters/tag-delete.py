@@ -24,7 +24,7 @@ class Strikeout(pf.Inline):
         return Strikeout(*content)
 
 def action(elem, doc):
-    if isinstance(elem, pf.Para):  # Paraクラスに限定
+    if isinstance(elem, pf.Para) or isinstance(elem, pf.Plain):
         new_elems = []
         buffer = []  # Strikeout用のバッファ
         in_underline = False  # 現在Strikeout範囲内かどうかを判定
