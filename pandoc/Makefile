@@ -37,11 +37,12 @@ SOURCE = \
 	$(SOURCEDIR)/1.14Leagues.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(SOURCEDIR)/Section2DivisionQualifications.md \
-	$(SOURCEDIR)/2.01Qualifications.md \
-	$(SOURCEDIR)/2.02Exceptions.md \
-	$(SOURCEDIR)/2.03ReclassificationOfProfessionalAmateur.md \
-	$(SOURCEDIR)/2.04ProsPlayingAmAmsPlayingPro.md \
-	$(SOURCEDIR)/2.05TrueAmateur.md \
+	$(SOURCEDIR)/2.01DivitionTypes.md \
+	$(SOURCEDIR)/2.02Qualifications.md \
+	$(SOURCEDIR)/2.03Exceptions.md \
+	$(SOURCEDIR)/2.04ReclassificationOfProfessionalAmateur.md \
+	$(SOURCEDIR)/2.05ProsPlayingAmAmsPlayingPro.md \
+	$(SOURCEDIR)/2.06TrueAmateur.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(SOURCEDIR)/Section3PlayerCodeConduct.md \
 	$(SOURCEDIR)/3.01General.md \
