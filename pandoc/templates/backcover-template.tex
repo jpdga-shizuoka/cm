@@ -3,10 +3,11 @@
     \begin{center}
         \textsf{$title$} \\
         $if(subtitle)$
-        $for(subtitle)$
-            $subtitle$ \\
-        $endfor$
+            $for(subtitle)$
+                $subtitle$ \\
+            $endfor$
         $endif$
+        \vspace*{1cm}
         \begin{tabular}{ll}
             $for(revisions)$
                 $it.revision$ & $it.date$ \\
