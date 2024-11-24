@@ -18,6 +18,8 @@ BACKCOVER_TEMPLATE = $(TEMPLATEDIR)/backcover-template.tex
 SOURCE = \
 	$(LOCAL_SOURCEDIR)/preface.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
+	$(LOCAL_SOURCEDIR)/update.md \
+	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(SOURCEDIR)/Introduction.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(SOURCEDIR)/Section1TournamentProcedures.md \
