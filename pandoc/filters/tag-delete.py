@@ -70,7 +70,10 @@ def action(elem, doc):
             # 未終了のStrikeoutが残っている場合
             new_elems.append(Strikeout(*buffer))
 
-        return pf.Para(*new_elems)
+        if isinstance(elem, pf.Para):
+            return pf.Para(*new_elems)
+        else:
+            return pf.Plain(*new_elems)
 #
 # Add LaTeX definitions for custom underline class.
 #
