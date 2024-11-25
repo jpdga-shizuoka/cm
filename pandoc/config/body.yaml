@@ -3,11 +3,13 @@ toc: true
 lot: true
 toc-depth: 2
 template: ./templates/main.tex
+include-in-header:
+    - ./headers/footer.tex
 variables:
     colorlinks: true
     linkcolor: blue
     urlcolor: red
     toccolor: blue
 metadata:
-    documentclass: bxjsarticle
+    documentclass: ltjsarticle
     geometry: a4paper, margin=20mm

@@ -20,6 +20,7 @@ SOURCE = \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(LOCAL_SOURCEDIR)/update.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
+	$(LOCAL_SOURCEDIR)/cleardoublepage.md \
 	$(SOURCEDIR)/Introduction.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(SOURCEDIR)/Section1TournamentProcedures.md \
