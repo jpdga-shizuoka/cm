@@ -1,12 +1,12 @@
 pdf-engine: lualatex
 variables:
     lang: ja
-    documentclass: ltjsarticle
     luatexjapresetoptions: fonts-noto-cjk
 include-in-header:
     - ./headers/headers.tex
 metadata:
-    documentclass: bxjsarticle
+    documentclass: ltjsarticle
+    classoption: twoside
     geometry: a4paper, margin=20mm
     title: ディスクゴルフ大会のための競技マニュアル
     author: Professional Disc Golf Association
