@@ -1,4 +1,4 @@
-# 監修者より
+# 監訳者より
 
 本 **ディスクゴルフ大会のための競技マニュアル - 2025年版** は、
 PDGAが公開する[Competition Manual for Disc Golf Events](https://www.pdga.com/rules/competition-manual-disc-golf-events)の直訳版です
@@ -46,6 +46,13 @@ PDGAツアー基準が[セクション5](#セクション5-pdgaツアー基準)�
 * 本書内部への参照リンクの例です: [セクション1:トーナメントの手順](#セクション1-トーナメントの手順)、
 * 本書から外部への参照リンクの例です: [PDGAディスクゴルフ公式規則](ordg/index)。
 
-## GitHub公開に関して
+## 資料公開
 
-本書作成の成果を、[`GitHub`](https://github.com/jpdga-shizuoka/cm)に公開しました。
+* 本書は
+[[**こちら**](https://jpdga-shizuoka.github.io/documents/)]
+で閲覧できます。
+* 本書作成による成果は
+[[**こちら**](https://github.com/jpdga-shizuoka/cm)]
+で閲覧できます。
+
+\hfill 2024年12月
