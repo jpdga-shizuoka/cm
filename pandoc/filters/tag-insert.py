@@ -31,34 +31,36 @@ def action(elem, doc):
 
         for child in elem.content:
             if isinstance(child, pf.Str):
-                # `++`タグを探す
-                if in_underline:
-                    # 終了タグを探す
-                    end_tag_index = child.text.find('++')
-                    if end_tag_index != -1:
-                        # 終了タグが見つかった場合
-                        buffer.append(pf.Str(child.text[:end_tag_index]))
-                        new_elems.append(Underline(*buffer))
-                        buffer = []
-                        in_underline = False
-                        # 残りのテキストを処理
-                        remainder = child.text[end_tag_index + 2:]
-                        if remainder:
-                            new_elems.append(pf.Str(remainder))
+                text = child.text
+                while text:
+                    if in_underline:
+                        # 終了タグを探す
+                        end_tag_index = text.find('++')
+                        if end_tag_index != -1:
+                            # 終了タグが見つかった場合
+                            buffer.append(pf.Str(text[:end_tag_index]))
+                            new_elems.append(Underline(*buffer))
+                            buffer = []
+                            in_underline = False
+                            # 残りのテキストを処理
+                            text = text[end_tag_index + 2:]
+                        else:
+                            # 終了タグが見つからない場合
+                            buffer.append(pf.Str(text))
+                            text = ""
                     else:
-                        # 終了タグが見つからない場合、全体をバッファに追加
-                        buffer.append(child)
-                else:
-                    # 開始タグを探す
-                    start_tag_index = child.text.find('++')
-                    if start_tag_index != -1:
-                        # 開始タグが見つかった場合
-                        new_elems.append(pf.Str(child.text[:start_tag_index]))
-                        in_underline = True
-                        buffer.append(pf.Str(child.text[start_tag_index + 2:]))
-                    else:
-                        # 通常の文字列として追加
-                        new_elems.append(child)
+                        # 開始タグを探す
+                        start_tag_index = text.find('++')
+                        if start_tag_index != -1:
+                            # 開始タグが見つかった場合
+                            if start_tag_index > 0:
+                                new_elems.append(pf.Str(text[:start_tag_index]))
+                            in_underline = True
+                            text = text[start_tag_index + 2:]
+                        else:
+                            # 通常の文字列として追加
+                            new_elems.append(pf.Str(text))
+                            text = ""
             else:
                 # Str以外の要素を処理
                 if in_underline:

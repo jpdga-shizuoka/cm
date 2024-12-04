@@ -4,7 +4,7 @@
 #
 import panflute as pf
 #
-# Custom class for underlined text.
+# Custom class for strikeouted text.
 #
 class Strikeout(pf.Inline):
     def __init__(self, *args):
@@ -27,46 +27,48 @@ def action(elem, doc):
     if isinstance(elem, pf.Para) or isinstance(elem, pf.Plain):
         new_elems = []
         buffer = []  # Strikeout用のバッファ
-        in_underline = False  # 現在Strikeout範囲内かどうかを判定
+        in_strikeout = False  # 現在Strikeout範囲内かどうかを判定
 
         for child in elem.content:
             if isinstance(child, pf.Str):
-                # `==`タグを探す
-                if in_underline:
-                    # 終了タグを探す
-                    end_tag_index = child.text.find('==')
-                    if end_tag_index != -1:
-                        # 終了タグが見つかった場合
-                        buffer.append(pf.Str(child.text[:end_tag_index]))
-                        new_elems.append(Strikeout(*buffer))
-                        buffer = []
-                        in_underline = False
-                        # 残りのテキストを処理
-                        remainder = child.text[end_tag_index + 2:]
-                        if remainder:
-                            new_elems.append(pf.Str(remainder))
+                text = child.text
+                while text:
+                    if in_strikeout:
+                        # 終了タグを探す
+                        end_tag_index = text.find('==')
+                        if end_tag_index != -1:
+                            # 終了タグが見つかった場合
+                            buffer.append(pf.Str(text[:end_tag_index]))
+                            new_elems.append(Strikeout(*buffer))
+                            buffer = []
+                            in_strikeout = False
+                            # 残りのテキストを処理
+                            text = text[end_tag_index + 2:]
+                        else:
+                            # 終了タグが見つからない場合
+                            buffer.append(pf.Str(text))
+                            text = ""
                     else:
-                        # 終了タグが見つからない場合、全体をバッファに追加
-                        buffer.append(child)
-                else:
-                    # 開始タグを探す
-                    start_tag_index = child.text.find('==')
-                    if start_tag_index != -1:
-                        # 開始タグが見つかった場合
-                        new_elems.append(pf.Str(child.text[:start_tag_index]))
-                        in_underline = True
-                        buffer.append(pf.Str(child.text[start_tag_index + 2:]))
-                    else:
-                        # 通常の文字列として追加
-                        new_elems.append(child)
+                        # 開始タグを探す
+                        start_tag_index = text.find('==')
+                        if start_tag_index != -1:
+                            # 開始タグが見つかった場合
+                            if start_tag_index > 0:
+                                new_elems.append(pf.Str(text[:start_tag_index]))
+                            in_strikeout = True
+                            text = text[start_tag_index + 2:]
+                        else:
+                            # 通常の文字列として追加
+                            new_elems.append(pf.Str(text))
+                            text = ""
             else:
                 # Str以外の要素を処理
-                if in_underline:
+                if in_strikeout:
                     buffer.append(child)
                 else:
                     new_elems.append(child)
 
-        if in_underline:
+        if in_strikeout:
             # 未終了のStrikeoutが残っている場合
             new_elems.append(Strikeout(*buffer))
 
@@ -75,13 +77,13 @@ def action(elem, doc):
         else:
             return pf.Plain(*new_elems)
 #
-# Add LaTeX definitions for custom underline class.
+# Add LaTeX definitions for custom strikeout class.
 #
 def prepare(doc):
     if doc.format == "latex":
-        underline_latex = r"\newcommand{\Strikeout}[1]{\uline{#1}}"
+        strikeout_latex = r"\newcommand{\Strikeout}[1]{\uline{#1}}"
         doc.metadata["header-includes"] = doc.metadata.get("header-includes", [])
-        doc.metadata["header-includes"].append(pf.RawBlock(underline_latex, format="latex"))
+        doc.metadata["header-includes"].append(pf.RawBlock(strikeout_latex, format="latex"))
 
 def main(doc=None):
     return pf.run_filter(action, prepare=prepare, doc=doc)
