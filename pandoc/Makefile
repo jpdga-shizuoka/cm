@@ -1,21 +1,19 @@
-NAME   = ディスクゴルフ大会のための競技マニュアル
-TARGET = $(NAME)
+#
+# Pandocを使って、マークダウンファイルからPDFを生成する
+#
+TITLE = CompetitionManualForDiscGolfEvents
+VERSION = 2025
+TARGET = $(TITLE)-$(VERSION).pdf
 
 PANDOC = pandoc
-
 CONFIGDIR = config
 TEMPLATEDIR = templates
 FILTERSDIR = filters
 SOURCEDIR = ../source
-MARKDOWNDIR = markdown
 LOCAL_SOURCEDIR = sources
 
-COVER_DATA = cover.tex
-BACKCOVER_DATA = backcover.tex
-TEMPLATE = $(TEMPLATEDIR)/main.tex
-COVER_TEMPLATE = $(TEMPLATEDIR)/cover-template.tex
-BACKCOVER_TEMPLATE = $(TEMPLATEDIR)/backcover-template.tex
 SOURCE = \
+	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(LOCAL_SOURCEDIR)/preface.md \
 	$(LOCAL_SOURCEDIR)/newpage.md \
 	$(LOCAL_SOURCEDIR)/update.md \
@@ -83,32 +81,14 @@ SOURCE = \
 	$(SOURCEDIR)/6.03VariancesCM.md \
 	$(LOCAL_SOURCEDIR)/newpage.md
 
-$(TARGET).pdf: $(SOURCE) $(COVER_DATA) $(BACKCOVER_DATA) $(TEMPLATE) $(CONFIGDIR)/revisions.yaml
+$(TARGET): $(SOURCE) $(TEMPLATEDIR)/* $(CONFIGDIR)/* $(FILTERSDIR)/*
 	$(PANDOC) \
+		-d $(CONFIGDIR)/book.yaml \
 		-d $(CONFIGDIR)/filters.yaml \
-		-d $(CONFIGDIR)/common.yaml \
-		-d $(CONFIGDIR)/body.yaml \
-		-d $(CONFIGDIR)/revisions.yaml \
-		-B $(COVER_DATA) \
-		-A $(BACKCOVER_DATA) \
-		-o $(TARGET).pdf \
+		-o $(TARGET) \
 		$(SOURCE)
 
-$(COVER_DATA) : $(COVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/cover.yaml $(CONFIGDIR)/revisions.yaml
-	echo "" | $(PANDOC) \
-		-d $(CONFIGDIR)/common.yaml \
-		-d $(CONFIGDIR)/cover.yaml \
-		-d $(CONFIGDIR)/revisions.yaml \
-		-o $(COVER_DATA)
-
-$(BACKCOVER_DATA) : $(BACKCOVER_TEMPLATE) $(CONFIGDIR)/common.yaml $(CONFIGDIR)/revisions.yaml $(CONFIGDIR)/backcover.yaml
-	echo "" | $(PANDOC) \
-		-d $(CONFIGDIR)/common.yaml \
-		-d $(CONFIGDIR)/backcover.yaml \
-		-d $(CONFIGDIR)/revisions.yaml \
-		-o $(BACKCOVER_DATA)
-
-all: clean $(TARGET).pdf
+all: clean $(TARGET)
 
 clean:
-	rm -f $(TARGET).html $(TARGET).pdf $(COVER_DATA) $(BACKCOVER_DATA)
+	rm -f $(TARGET)
