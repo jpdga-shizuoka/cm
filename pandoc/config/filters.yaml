@@ -3,5 +3,4 @@ filters:
   - filters/format-table.py
   - filters/ordered-list.py
   - filters/tag-insert.py
-  - filters/tag-delete.py
   
