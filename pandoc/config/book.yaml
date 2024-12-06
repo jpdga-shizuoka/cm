@@ -1,0 +1,26 @@
+from: markdown+fenced_divs+lists_without_preceding_blankline
+pdf-engine: lualatex
+toc: true
+toc-depth: 2
+lot: true
+template: ./templates/book.tex
+variables:
+    lang: ja
+    luatexjapresetoptions: fonts-noto-cjk
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: red
+    toccolor: blue
+metadata:
+    documentclass: ltjsarticle
+    classoption: twoside
+    geometry: a4paper, margin=20mm
+    title: ディスクゴルフ大会のための競技マニュアル
+    title_alt: Competition Manual for Disc Golf Events
+    version: 2025年版
+    copyright: The original copyright of this book is reserved by PDGA®.
+    publisher: 静岡県ディスクゴルフ協会
+    contact: jpdga.shizuoka@gmail.com
+    revisions:
+    - revision: 2025年版
+      date: 2024年12月

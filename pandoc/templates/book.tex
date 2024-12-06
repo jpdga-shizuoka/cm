@@ -1,0 +1,183 @@
+$passoptions.latex()$
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{$documentclass$}
+$if(beamerarticle)$
+\usepackage{beamerarticle} % needs to be loaded first
+$endif$
+\usepackage{xcolor}
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+\usepackage{amsmath,amssymb}
+$--
+$-- section numbering
+$--
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+$fonts.latex()$
+$common.latex()$
+$for(header-includes)$
+$header-includes$
+$endfor$
+$after-header-includes.latex()$
+$hypersetup.latex()$
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$date$}
+
+% 
+% フッターの設定
+% 
+$if(title)$
+  \newcommand{\customtitle}{$title$}
+$else$
+  \newcommand{\customtitle}{}
+$endif$
+$if(title_alt)$
+  \newcommand{\customtitlealt}{$title_alt$}
+$else$
+  \newcommand{\customtitlealt}{}
+$endif$
+$if(version)$
+  \newcommand{\customversion}{$version$}
+$else$
+  \newcommand{\customversion}{}
+$endif$
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % 既存のヘッダー・フッターをクリア
+\fancyfoot[RO]{\small \textbf{Page \thepage}} % 右下（Right Odd）
+\fancyfoot[CO]{\small \textbf{\customtitle}} % 中央（Center Odd）
+\fancyfoot[LO]{\small \textbf{\customversion}} % 左下（Left Odd）
+\fancyfoot[RE]{} % 右下（Right Even）
+\fancyfoot[CE]{\small \textbf{\customtitlealt}} % 中央（Center Even）
+\fancyfoot[LE]{\small \textbf{Page \thepage}} % 左下（Left Even）
+\renewcommand{\headrulewidth}{0pt} % ヘッダーの線を非表示
+\renewcommand{\footrulewidth}{0.4pt} % フッターの線を表示
+
+\begin{document}
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+
+% 
+% 表紙
+% 
+\begin{titlepage}
+  \centering
+  \vspace*{10cm}
+  {\huge \textbf{$title$}}\\[0.5cm]
+  $if(version)$
+      {\Large \textit{$version$}}\\
+  $endif$
+  \vfill
+  {\small Copyright \copyright{} $copyright$}\\[0.5cm]
+\end{titlepage}
+
+\newpage
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+\hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+$body$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+
+% 
+% 裏表紙
+% 
+\newpage
+\begin{titlepage}
+  \vspace*{\stretch{1}}
+  \begin{center}
+      \textsf{$title$} \\
+      $if(version)$
+          $for(version)$
+              $version$ \\
+          $endfor$
+      $endif$
+      \vspace*{1cm}
+      \begin{tabular}{ll}
+          $for(revisions)$
+              $it.revision$ & $it.date$ \\
+          $endfor$
+      \end{tabular} \\
+      \begin{tabular}{ll} \toprule
+          発行   & $publisher$ \\
+          連絡先 & $contact$ \\ \bottomrule
+      \end{tabular}
+  \end{center}
+\end{titlepage}
+\end{document}
