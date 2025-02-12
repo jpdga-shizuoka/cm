@@ -9,7 +9,7 @@ import panflute as pf
 #
 SMALLER_TABLE_LIST = [
     "ティアの基準(北米限定)",
-    "ティアの基準(北米以外の大会)"
+    "ティアの基準(北米以外)"
 ]
 # 上のりストにヒットした表は、以下を適用する
 SMALLER_TABLE_FORMAT = r"\footnotesize\renewcommand{\arraystretch}{0.6}"
