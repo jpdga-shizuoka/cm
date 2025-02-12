@@ -2,7 +2,7 @@
 # Pandocを使って、マークダウンファイルからPDFを生成する
 #
 TITLE = CompetitionManualForDiscGolfEvents
-VERSION = 2025
+VERSION = 2025-1
 TARGET = $(TITLE)-$(VERSION).pdf
 
 PANDOC = pandoc

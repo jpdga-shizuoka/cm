@@ -17,10 +17,12 @@ metadata:
     geometry: a4paper, margin=20mm
     title: ディスクゴルフ大会のための競技マニュアル
     title_alt: Competition Manual for Disc Golf Events
-    version: 2025年版
+    version: 2025年版(改訂1)
     copyright: The original copyright of this book is reserved by PDGA®.
     publisher: 静岡県ディスクゴルフ協会
     contact: jpdga.shizuoka@gmail.com
     revisions:
+    - revision: 2025年版(改訂1)
+      date: 2025年2月
     - revision: 2025年版
       date: 2024年12月
